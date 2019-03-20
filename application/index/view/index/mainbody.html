@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="__STATIC__/blog/css/info.css" rel="stylesheet">
+
+    <link href="__STATIC__/blog/css/viewer.css" rel="stylesheet">
+    <script src="__STATIC__/blog/js/viewer.js"></script>
+</head>
+<body>
+<div class="infosbox">
+    <input type="hidden" value="{$text.id}" id="aid">
+    <div class="newsview">
+        <h3 class="news_title">{$text.a_title}</h3>
+        <div class="">
+        <div class="bloginfo">
+            <ul>
+                <li class="author"><span class="ren"></span>作者：<a href="/">{$text.author}</a></li>
+                <li class="lmname"><span class="lei"></span><a href="{:url('index/index',['co_id'=>$text.co_id])}">{$text.b_title}</a></li>
+                <li class="timer"><span class="time"></span>时间：{$text['addtime']|date="Y-m-d H:i:s",###}</li>
+                <li class="view"><span class="click"></span>{$text.click}人已阅读</li>
+            </ul>
+        </div>
+        </div>
+
+        <div class="tags">
+            {volist name="category" id="cate"}
+            <a href="{:url('index/index',['ca_id'=>$cate.id])}" target="_blank" style=" border-radius: 6px;">{$cate.title}</a>
+            {/volist}
+        </div>
+
+        <div STYLE="margin-bottom: 20px;margin-top: 30px;">
+                <hr style="height:1px;border:none;border-top:1px dashed #061214;" />
+        </div>
+        <div id="img" class="news_con">
+            {$text.content}
+        </div>
+        {eq name="text.is_original" value="1"} <p style="font-size: 18px;color: red;margin-left: 30px;">本文为MrYan原创文章,转载无需和我联系,但请注明来自MrYan个人博客:www.mryan888.com </p>{/eq}
+    </div>
+
+
+    <div class="share">
+        <p class="diggit" id="zan"    style=" cursor:pointer;margin-bottom: 30px;" data-action="{$text.id}"  > 很赞哦！({$text.is_like})</p>
+    </div>
+
+
+    <div class="nextinfo">
+        {eq name="$last.id" value="0"}
+        <p>上一篇：<a href="javascript:;">{$last.title}</a></p>
+        {else}
+         <p>上一篇：<a href="{:url('index/mainBody',['id'=>$last.id])}">{$last.title}</a></p>
+        {/eq}
+        {eq name="$next.id" value="0"}
+        <p>下一篇：<a href="javascript:;">{$next.title}</a></p>
+        {else}
+        <p>下一篇：<a href="{:url('index/mainBody',['id'=>$next.id])}">{$next.title}</a></p>
+        {/eq}
+    </div>
+
+    <div class="news_pl">
+      <div style="border: #CCCCCC solid 1px; border-radius:5px;   ">
+        <div style="  display: -webkit-flex; display: flex;">
+            {empty name="userarr"}
+            <img style="width: 45px;height: 45px; margin: 10px; " src="__STATIC__/user/image/default_head_img.gif">
+            {else /}
+            <img style="width: 45px;height: 45px; margin: 10px; " src="{$userarr.head_img}">
+            {/empty}
+            <textarea style=" border-top:none;    resize:none;width: 100%; height: 100px; margin-left:20px;"  placeholder="来说几句吧......最多一百字"  ></textarea>
+        </div>
+        <div style=" display: -webkit-flex; display: flex;">
+            <input type="text" name="email"   placeholder="回复邮箱"  value=""  style=" border-top: none; margin-left: 82px; ">
+            <input class="btn btn-primary sub "  type="submit" name="sub" value="评论" style=" width:150px; margin-left: 55.5%">
+        </div>
+      </div>
+
+    <h2>文章评论</h2>
+        <div style=" width: 100%">
+              {volist name="commentTrre" id="comment"}
+
+            <div style="  width: 100%;display: -webkit-flex; display: flex;">
+                <img style="width: 45px;height: 45px; margin: 10px; " src="{$comment.head_img}">
+                <div style="margin: 10px;  width: 100%; ">
+                    <p>{$comment.nick_name}&nbsp;:&nbsp;{$comment.content}</p>
+                    <span>{$comment['addtime']|date="Y-m-d H:i:s",###} <a href="javascript:;"  class="reply"  data-action="{$comment.id}">&nbsp;&nbsp;回复</a></span>
+               {volist name="$comment.child"  id="child"}
+                    <div style=" display: -webkit-flex; display: flex;">
+                    <img style="width: 45px;height: 45px; margin: 10px; " src="{$child.head_img}">
+                    <div style=" margin: 10px; ">
+                        <p>{$child.nick_name}  <span style="color: darkred">回复</span>  {$child.reply_name} &nbsp;:&nbsp;{$child.content} </p>
+                    <span>{$child['addtime']|date="Y-m-d H:i:s",###}&nbsp;&nbsp;<a href="javascript:;"  class="reply" data-action="{$child.id}">回复</a></span>
+                    </div>
+                    </div>
+                {/volist}
+                </div>
+            </div>
+            <hr style="height:1px;border:none;border-top:1px solid #DDDDDD;" />
+            {/volist}
+
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="__STATIC__/blog/js/jquery.min.js"></script>
+<script type="text/javascript" src="__STATIC__/blog/js/jquery.comment.js" ></script>
+<script type="text/javascript" src="__STATIC__/blog/js/bootstrap.min.js"></script>
+<script>
+    //图片放大
+    var viewer = new Viewer(document.getElementById('img'), {
+        url: 'data-original'
+    });
+</script>
+<script type="text/javascript">
+$(function () {
+    $("#zan").click(function () {
+        $aid=$(this).attr("data-action");
+     $.ajax({
+            type:"GET",
+            url:"{:url('index/like')}",
+            dataType:"json",
+            data:{aid:$aid},
+           success:function (data)
+          {
+             if(data.code=1)
+             {
+                 layer.msg(data.msg,{icon:7,time:1000});
+             }
+             else {
+                 layer.msg(data.msg,{icon:6,time:1000});
+             }
+         }
+     });
+    });
+//动态加载评论框
+$(".reply").click(function () {
+ $pid=$(this).attr("data-action");
+$html=" <div class=\"app\" style=\"border: #CCCCCC solid 1px; border-radius:5px; width: 100%;  \">\n" +
+    "        <div style=\"  display: -webkit-flex; display: flex;\">\n" +
+    "            <img style=\"width: 70px;height: 60px; margin: 10px; \" src=\"{$userarr.head_img | default='__STATIC__/user/image/default_head_img.gif'}\">\n" +
+    "            <textarea style=\" border-top:none;    resize:none;width: 100%; height: 100px; margin-left:20px;\"  placeholder=\"来说几句吧......最多一百字\"  ></textarea>\n" +
+    "        </div>\n" +
+    "        <div style=\" display: -webkit-flex; display: flex;\">\n" +
+    "            <input type=\"text\" name=\"email\"   placeholder=\"回复邮箱\"  value=\"\"  style=\" border-top: none; margin-left: 101px; \">\n" +
+    "            <input class=\"btn btn-primary sub \" type=\"submit\" name=\"sub\" value=\"评论\" style=\" width:100px; margin-left: 50%;\">\n" +
+    "            <input  type=\"hidden\"  value=\"评论\" id=\"pid\"> \n" +
+    "        </div>\n" +
+    "      </div>";
+    $(".app").remove();
+    $(this).parent().parent().parent().after($html);
+    $("#pid").attr("value",$pid);
+
+});
+
+
+//评论回复
+    $("body").on("click",".sub",sub);
+    function sub() {
+        //评论内容
+       $comment= $(this).parent().prev().children("textarea").val();
+       //回复邮箱
+       $email=$(this).prev().val();
+        $aid=$("#aid").val();
+
+       //被评论ID
+       $pid=$(this).next("#pid").val();
+
+        if($comment=="" || $comment==null)
+        {
+            layer.msg("内容不能为空",{icon:5,time:1000})
+        }
+        else {
+           $.ajax({
+               url:"{:url('index/comment')}",
+               dataType:"json",
+               data:{comment:$comment,email:$email,aid:$aid,pid:$pid},
+               type:"POST",
+               success:function (data) {
+                      if(data.code==0)
+                      {
+                          layer.msg(data.msg,{icon:5,time:1000})
+                      }
+                      else if(data.code==2)
+                      {
+                        //弹出登陆窗
+                          login_popup();
+                      }
+                      else {
+                          window.location.reload();
+                      }
+               }
+           })
+        }
+    }
+});
+
+//百度推送
+(function(){
+    var canonicalURL, curProtocol;
+    //Get the <link> tag
+    var x=document.getElementsByTagName("link");
+    //Find the last canonical URL
+    if(x.length > 0){
+        for (i=0;i<x.length;i++){
+            if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+                canonicalURL=x[i].href;
+            }
+        }
+    }
+    //Get protocol
+    if (!canonicalURL){
+        curProtocol = window.location.protocol.split(':')[0];
+    }
+    else{
+        curProtocol = canonicalURL.split(':')[0];
+    }
+    //Get current URL if the canonical URL does not exist
+    if (!canonicalURL) canonicalURL = window.location.href;
+    //Assign script content. Replace current URL with the canonical URL
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+
+
+</script>
+
+</html>

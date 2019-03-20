@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/datatables/hui/H-ui.min.css" />
+<link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
+<link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+<script type="text/javascript" src="__STATIC__/datatables/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="__STATIC__/datatables/jquery/jquery-1.10.1.min.js"></script>
+<style>
+    .mac{
+       /* position: absolute;*/
+        width: 1200px;
+        height: 500px;
+        border:#a5d24a solid 2px;
+        position: relative;
+     }
+
+</style>
+
+<body>
+
+<div class="mac">
+
+    <!--<span class="span"  style="position: absolute;top: 100px;left: 300px; width: 50px;height: 50px;background-color: red;"></span>-->
+
+</div>
+
+<div class="">
+
+    <span>  X: <span id="X">   </span> </span> </br>
+    <span>  Y: <span id="Y">   </span> </span>
+
+</div>
+
+<input value="登录"  id="but"  style="width:50px;" type="button">
+
+</body>
+
+<script>
+
+    $('.mac').mousemove(function(e)
+    {
+
+     var  X=e.pageX-$(this).offset().left; //获取当前鼠标相对img的X坐标
+     var  Y=e.pageY-$(this).offset().top; //获取当前鼠标相对img的Y坐标
+
+     $("#X").html(X);
+     $("#Y").html(Y);
+
+    });
+
+
+$("#but").click(function ()
+{
+
+for ($i=100;$i<500;$i++)
+
+{
+
+    var y=200;
+    var x=800;
+    var yy=10;
+    var xx=200;
+
+   $a = parseInt(Math.random() * (xx - yy + 1) + yy);
+   $b = parseInt(Math.random() * (x - y + 1) + y);
+
+    $xz=$i+$a+"px";
+    $yz=$i+$b+"px";
+
+    var str ="<span class='span' onclick='member_del(this)' id='aa' title="+$i+" style='  background-color: #0a8ddf; position: absolute; width: 5px;height: 5px; top:"+$xz+"; left: "+$yz+";  ' ></span>";
+    $(".mac").append(str);
+
+}
+
+ /*   var st2 ='<span class="span"  onclick=\'member_del(this)\' title=\'123123ew sdf sdf d 456\' style="position: absolute;top: 150px;left: 300px; width: 5px;height: 5px;background-color: red;"></span>';
+
+    $(".mac").append(st2);*/
+
+   // alert(rand);
+
+});
+
+    /*用户-删除*/
+
+    function member_del(obj){
+      $title= obj.title;
+   // alert($title);
+      layer.msg($title,{time:8000});
+      //  icon:1,
+    }
+
+</script>
+</html>

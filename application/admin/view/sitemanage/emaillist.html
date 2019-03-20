@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/datatables/hui/H-ui.min.css"/>
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+    <!-- 图片放大 -->
+    <link href="__STATIC__/blog/css/viewer.css" rel="stylesheet">
+    <script src="__STATIC__/blog/js/viewer.js"></script>
+    <style>
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pagination li {
+            margin: 0px 10px;
+            border: 1px solid #e6e6e6;
+            padding: 3px 8px;
+            display: inline-block;
+        }
+
+        .pagination .active {
+            background-color: #46A3FF;
+            color: #fff;
+        }
+
+        .pagination .disabled {
+            color: #aaa;
+        }
+    </style>
+
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+</head>
+
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">站点管理</a>
+        <a>
+          <cite>邮件管理</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <form class="layui-form"   >
+        <table class="layui-table" id="datatable">
+            <thead>
+            <tr>
+                <th style="width: 40%" >SMTP服务器地址:</th>
+                <th>
+                    <input  style="width: 60%" type="text" id="email_server" name="email_server" required=""  value="{$smtp.email_server | default=''}" lay-verify="title" autocomplete="off" class="layui-input">
+                </th>
+            </tr>
+
+            <tr>
+                <th style="width: 40%" >加密方式:</th>
+                <th>
+                    <input  style="width: 60%" type="text" id="encryption" name="encryption" required="" placeholder="ssl等...."  value="{$smtp.encryption | default=''}" lay-verify="title" autocomplete="off" class="layui-input">
+                </th>
+            </tr>
+            <tr>
+                <th style="width: 40%" >邮箱账号:</th>
+                <th>
+                    <input  style="width: 60%" type="text" id="send_user" name="send_user" required=""  value="{$smtp.send_user | default=''}" lay-verify="title" autocomplete="off" class="layui-input">
+                </th>
+            </tr>
+            <tr>
+                <th style="width: 40%" >远程服务器端口号:</th>
+                <th>
+                    <input  style="width: 60%" type="text" id="port" name="port" required="" placeholder=""  value="{$smtp.port | default=''}" lay-verify="title" autocomplete="off" class="layui-input">
+                </th>
+            </tr>
+
+            <tr>
+                <th style="width: 40%" >SMTP授权码:</th>
+                <th>
+                    <input  style="width: 60%" type="text" id="smtp_pwd" name="smtp_pwd" required="" placeholder=""  value="{$smtp.smtp_pwd | default=''}" lay-verify="title" autocomplete="off" class="layui-input">
+                </th>
+            </tr>
+            </thead>
+        </table>
+
+        <div class="layui-form-item">
+            <label for="L_username" class="layui-form-label">
+            </label>
+            <button  type="submit" class="layui-btn" lay-filter="add" lay-submit="">
+                提交
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+    layui.use(['form','layer'], function(){
+        $ = layui.jquery;
+        var form = layui.form
+            ,layer = layui.layer;
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 3){
+                    return '名称至少得4个字符';
+                }
+            }
+        });
+
+        form.on('submit(add)', function(data)
+        {
+
+            $.post("{:url('sitemanage/addfielemali')}",data.field,function (data) {
+
+                if(data.code==1)
+                {
+                    layer.alert(data.msg, {icon: 6},function () {
+                        location.reload();
+                    });
+
+                }
+                else
+                {
+                    layer.msg(data.msg, {icon: 5, time: 1000});
+
+                }
+
+            });
+
+            return false;
+        });
+    });
+
+    //关闭当前窗口
+    $("#no").click(function () {
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
+    })
+</script>
+
+</div>
+
+
+
+
+</body>
+
+</html>

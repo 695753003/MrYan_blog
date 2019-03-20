@@ -1,0 +1,250 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>MrYan个人博客</title>
+    <meta name="keywords" content="个人博客"/>
+    <meta name="description" content="个人博客"/>
+    <meta http-equiv="content-type" CONTENT="text/html" charset="utf-8">
+    <link href="__STATIC__/blog/css/base.css" rel="stylesheet">
+    <link href="__STATIC__/blog/css/index.css" rel="stylesheet">
+    <link href="__STATIC__/blog/css/m.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="__STATIC__/mryan.ico">
+    <link rel="stylesheet" type="text/css" href="http://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
+    <script src="__STATIC__/blog/js/jquery.min.js"></script>
+    <script src="__STATIC__/blog/js/ab.js"></script>
+    <script src="__STATIC__/blog/js/jquery.easyfader.min.js"></script>
+    <script src="__STATIC__/blog/js/hc-sticky.js"></script>
+    <script src="__STATIC__/blog/js/comm.js"></script>
+    <script src="__STATIC__/blog/js/scrollReveal.js"></script>
+
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
+
+    <!--[if lt IE 9]>
+    <script src="__STATIC__/blog/js/modernizr.js"></script>
+    <![endif]-->
+</head>
+<style>
+    .pagination {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .pagination li {
+        margin: 0px 10px;
+        border: 1px solid #e6e6e6;
+        padding: 3px 8px;
+        display: inline-block;
+    }
+
+    .pagination .active {
+        background-color: #46A3FF;
+        color: #fff;
+    }
+
+    .pagination .disabled {
+        color: #aaa;
+    }
+
+    .button {
+        background-color: blueviolet; /* Green    red  orange  blueviolet  cadetblue  blue  */
+        border: none;
+        color: white;
+        padding: 3px 5px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 10px;
+        margin: 8px;
+    }
+
+     .uts {
+         margin: 0;
+         overflow:hidden;
+         text-overflow:ellipsis;
+         white-space:nowrap;
+         word-break:keep-all;
+     }
+
+
+
+</style>
+<body>
+<header class="header-navigation" id="header">
+    <nav >
+        <div class="logo" ><a style="color: black;" href="{:url('index/index')}">MrYan个人博客</a></div>
+        <h2 id="mnavh"><span class="navicon"></span></h2>
+        <ul id="starlist" style="color: black;font-size: 30px; ">
+            <li><a href="{:url('index/index')}" style="color: black;">首页</a></li>
+            {volist name="column" id="col"}
+            <li><a style="color: black;" href="{:url($col.url,['co_id'=>$col.id])}">{$col.title}</a></li>
+            {/volist}
+
+        </ul>
+        <div >
+            {empty name="userarr" }
+            <a class="a globalLoginBtn "  style="color: black;font-size: 15px;cursor: pointer;">登录</a>
+            {else /}
+            <div>
+                <img src="{$userarr.head_img}" style="width: 40px;height: 40px;  display: inline">
+                 <span style="margin-top: -50px;">{$userarr.nick_name}</span>
+                <a  href="{:url('index/login/loginout')}" style="color:#0044BB ;font-size: 15px;cursor: pointer; ">退出</a>
+            </div>
+
+            {/empty}
+
+        </div>
+      <!--  <div class="searchbox">
+        <div id="search_bar" class="search_bar">
+            <form id="searchform" action="{:url('index/searchComment')}" method="post" name="searchform">
+                <input class="input" style="border: 2px aqua solid" placeholder="想搜点什么呢.." type="text"  name="keyboard" id="keyboard">
+                <input type="hidden" name="show" value="title"/>
+                <input type="hidden" name="tempid" value="1"/>
+                <input type="hidden" name="tbname" value="news">
+                &lt;!&ndash;  <input value="搜索"/>&ndash;&gt;
+                <botton type="submit" name="Submit" > <p class="search_ico"><span></span></p></botton>
+            </form>
+        </div>
+    </div>-->
+    </nav>
+
+
+
+</header>
+<article>
+    <main>
+        {__CONTENT__}
+    </main>
+    <aside class="r_box">
+        <div class="about_me">
+            <h2>博主简介</h2>
+            <ul>
+                <i><img src="{$about.src}" style="width: 100%;height: 100%"></i>
+                <p>{$about.intro}</p>
+            </ul>
+        </div>
+        <div class="fenlei">
+            <h2>热门标签</h2>
+            <div class="tag">
+                {volist name="catelist" id="cate" key="k"}
+                {switch name="$k%5"}
+                {case value="1"} <a href="{:url('index/index',['ca_id'=>$cate.id])}" target="_blank" class="button"
+                                    style="background:blueviolet ">{$cate.title} ({$cate.count})</a>{/case}
+                {case value="2"}<a href="{:url('index/index',['ca_id'=>$cate.id])}" target="_blank" class="button"
+                                   style="background:red ">{$cate.title} ({$cate.count})</a>{/case}
+                {case value="3"} <a href="{:url('index/index',['ca_id'=>$cate.id])}" target="_blank" class="button"
+                                    style="background:orange ">{$cate.title} ({$cate.count})</a>{/case}
+                {case value="4"} <a href="{:url('index/index',['ca_id'=>$cate.id])}" target="_blank" class="button"
+                                    style="background:cadetblue ">{$cate.title} ({$cate.count})</a>{/case}
+                {default /} <a href="{:url('index/index',['ca_id'=>$cate.id])}" target="_blank" class="button"
+                               style="background:blue ">{$cate.title} ({$cate.count})</a>
+                {/switch}
+                {/volist}
+            </div>
+        </div>
+        <div class="fenlei">
+        <h2>置顶推荐</h2>
+        <ul>
+            {volist name="link_article" id="article"}
+            <li><span class="lei"></span><a href="{:url('index/index/mainBody',['id'=>$article.id])}" style="color: navy; font-size: 15px;">{$article.title}</a></li>
+            {/volist}
+        </ul>
+    </div>
+        <div class="fenlei">
+            <h2>友情链接</h2>
+            <ul>
+                {volist name="linkarr" id="link"}
+                <li><span class="lei"></span><a href="http://{$link.url}" style="color:black ;" target="_blank">{$link.link_name}</a></li>
+                {/volist}
+            </ul>
+        </div>
+        <div class="fenlei">
+            <h2>最新评论</h2>
+            <ul>
+                {volist name="list_comment" id="com"}
+<!--
+                <li><span class="lei"></span><a href="{:url('index/index/mainBody')}" style="color: navy">{$com.title}</a></li>
+-->
+                <li style="margin-top: -10px;">
+                    <div style="display: flex; border: none; color: #AAAAAA">
+                        <img style="width: 45px;height: 45px; margin-top: 10px; " src="{$com.head_img}">
+                        <div style="border: none; margin-left: 10px; margin-top: 10px; width: 100%">
+                            <span class="uts">{$com.nick_name}</span> <span style="float:right;">{$com['addtime']|date="Y-m-d",###}</span>
+                            <p class="uts">在<a style="color: black; cursor:pointer;" href="{:url('index/mainbody',['id'=>$com['aid']])}" >{$com.title}</a></p>
+                            <p class="uts">评论 : &nbsp;{$com.content}</p>
+                        </div>
+                    </div>
+                    <hr style="height:1px;border:none;border-top:1px solid #DDDDDD; margin-top: -30px;" />
+                </li>
+                {/volist}
+            </ul>
+        </div>
+       <!-- <div class="guanzhu">
+            <h2>关注我 么么哒</h2>
+            <ul>
+                <img src="images/wxgzh.jpg">
+            </ul>
+        </div>-->
+    </aside>
+</article>
+<footer>
+    <p>copyright © by <a href="http://www.mryan888.com" target="_blank">MrYan个人博客</a> <span >鄂ICP备18013814号-2</span>
+    </p>
+</footer>
+<a href="#" class="cd-top">Top</a>
+<!--登陆隐藏域-->
+<div class="modal fade" id="loginModal" style="display:none;">
+    <div class="modal-dialog modal-sm" style="width:540px;">
+        <div class="modal-content" style="border:none;">
+            <div class="col-left"></div>
+            <div class="col-right">
+                <div class="modal-header">
+                    <button type="button" id="login_close" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="loginModalLabel" style="font-size: 18px; margin-left: 30px;">无需注册，可使用以下方式直接登陆</h4>
+                </div>
+            <div class="modal-body">
+                <div style="display: flex;justify-content: center;">
+                    <a onclick="toQzoneLogin()" id="qqlogin"> <img src="__STATIC__/login/images/Connect_logo_5.png"></a>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--登录弹出样式-->
+<script type="text/javascript" src="__STATIC__/login/js/jquery2.2.2.min.js"></script>
+<script type="text/javascript" src="__STATIC__/login/js/modal.js"></script>
+<script type="text/javascript" src="__STATIC__/login/js/script.js"></script>
+<!--登录弹出样式-->
+
+</body>
+</html>
+<script type="text/javascript">
+
+    var childWindow;
+    function toQzoneLogin()
+    {
+        childWindow = window.open("{:url('login/qqlogin')}","TencentLogin");
+        location.reload();
+    }
+    function closeChildWindow()
+    {
+        childWindow.close();
+    }
+</script>
+<script>
+    (function(){
+        var bp = document.createElement('script');
+        bp.src = '//push.zhanzhang.baidu.com/push.js';
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+
+</script>
+

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/datatables/hui/H-ui.min.css"/>
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+    <!-- 图片放大 -->
+    <link href="__STATIC__/blog/css/viewer.css" rel="stylesheet">
+    <script src="__STATIC__/blog/js/viewer.js"></script>
+    <style>
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pagination li {
+            margin: 0px 10px;
+            border: 1px solid #e6e6e6;
+            padding: 3px 8px;
+            display: inline-block;
+        }
+
+        .pagination .active {
+            background-color: #46A3FF;
+            color: #fff;
+        }
+
+        .pagination .disabled {
+            color: #aaa;
+        }
+    </style>
+
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="x-body">
+    <form class="layui-form"   >
+        <table class="layui-table" id="datatable">
+            <thead>
+            <tr>
+                <th style="width: 40%" >开启评论审核:</th>
+                <th>
+                        <input type="radio" name="is_comment_status" value="1"  lay-skin="primary" title="启用"   {eq name="$comment_cfg.is_comment_status" value="1" }checked{/eq} >
+                        <input type="radio" name="is_comment_status" value="0"  lay-skin="primary" title="禁用"  {eq name="$comment_cfg.is_comment_status" value="0"  }checked{/eq}  >
+                </th>
+            </tr>
+            <tr>
+                <th style="width: 40%" >发送被评论邮件:</th>
+                <th>
+                        <input type="radio" name="is_send_email_status" value="1"  lay-skin="primary" title="启用"  {eq name="$comment_cfg.is_send_email_status" value="1" }checked{/eq} >
+                        <input type="radio" name="is_send_email_status" value="0"  lay-skin="primary" title="禁用"  {eq name="$comment_cfg.is_send_email_status" value="0"  }checked{/eq}  >
+              </th>
+            </tr>
+            <tr>
+                <th style="width: 40%" >接收邮箱:</th>
+                <th>
+                    <input  style="width: 60%" type="text" id="admin_email" name="admin_email" required=""  value="{$comment_cfg.admin_email | default=''}" lay-verify="title" autocomplete="off" class="layui-input">
+                </th>
+            </tr>
+            </thead>
+        </table>
+
+        <div class="layui-form-item">
+            <label for="L_username" class="layui-form-label">
+            </label>
+            <button  type="submit" class="layui-btn" lay-filter="add" lay-submit="">
+                提交
+            </button>
+        </div>
+    </form>
+</div>
+
+<script>
+    layui.use(['form','layer'], function(){
+        $ = layui.jquery;
+        var form = layui.form
+            ,layer = layui.layer;
+        //自定义验证规则
+        form.verify({
+            title: function(value){
+                if(value.length < 3){
+                    return '名称至少得4个字符';
+                }
+            }
+        });
+
+        form.on('submit(add)', function(data)
+        {
+
+            $.post("{:url('comment/addconfig')}",data.field,function (data) {
+                if(data.code==1)
+                {
+                    layer.alert(data.msg, {icon: 6},function () {
+                        location.reload();
+                    });
+
+                }
+                else
+                {
+                    layer.msg(data.msg, {icon: 5, time: 1000});
+
+                }
+
+            });
+
+            return false;
+        });
+    });
+
+    //关闭当前窗口
+    $("#no").click(function () {
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
+    })
+</script>
+
+</div>
+
+
+
+
+</body>
+
+</html>

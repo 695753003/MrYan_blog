@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/datatables/hui/H-ui.min.css"/>
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+    <!-- 图片放大 -->
+    <link href="__STATIC__/blog/css/viewer.css" rel="stylesheet">
+    <script src="__STATIC__/blog/js/viewer.js"></script>
+    <style>
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pagination li {
+            margin: 0px 10px;
+            border: 1px solid #e6e6e6;
+            padding: 3px 8px;
+            display: inline-block;
+        }
+
+        .pagination .active {
+            background-color: #46A3FF;
+            color: #fff;
+        }
+
+        .pagination .disabled {
+            color: #aaa;
+        }
+    </style>
+
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+</head>
+
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">评论管理</a>
+        <a>
+          <cite>评论列表</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <xblock>
+        <button class="layui-btn layui-btn-danger" onclick="x_admin_show('评论设置','{:url('comment/addconfig')}','800','500')"><i class="layui-icon"></i>评论设置</button>
+    </xblock>
+    <table class="layui-table" id="datatable">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>文章标题</th>
+            <th>评论人</th>
+            <th>评论内容</th>
+            <th>评论时间</th>
+            <th>审核</th>
+            <th>操作</th>
+        </tr>
+        {volist name="comment" id="com"}
+        <tr>
+            <th>{$com.id}</th>
+            <th>{$com.title}</th>
+            <th>{$com.nick_name}</th>
+            <th>{$com.content}</th>
+            <th>{$com.addtime | date="Y-m-d H:i:s",###}</th>
+            <th STYLE="color: black">{eq name="$com.status" value="1"}
+                <i class="layui-icon">&#xe605;</i>
+                {else/}
+                <i class="layui-icon">&#x1006;</i>
+                {/eq}</th>
+            <th><a title="审核" onclick="member_audit(this,{$com.id},{$com.status})"  data-action="{$com.status}"  href="javascript:;"><i
+                    class="layui-icon">{eq name="$com.status" value="1"}&#xe6af;{else/}&#xe69c;{/eq}  </i></a> &nbsp;&nbsp;
+                <a title="删除" onclick="member_del(this,{$com.id})" href="javascript:;"><i
+                        class="layui-icon">&#xe640;</i></a>
+            </th>
+        </tr>
+        {/volist}
+        </thead>
+    </table>
+
+</div>
+<div>{$comment->render()}</div>
+
+
+<script>
+    //图片放大
+    var viewer = new Viewer(document.getElementById('datatable'), {
+        url: 'data-original'
+    });
+</script>
+
+<script>
+    layui.use('laydate', function () {
+
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+
+    });
+
+    /*用户-停用*/
+    function member_audit(obj, id,status) {
+
+       // var status=obj.attr("data-action");
+        layer.confirm('是否修改状态？', function (index) {
+
+            //发异步修改状态
+            $.post("{:url('comment/audit')}",{id:id,status:status} ,function (data) {
+                if (data.code == 1) {
+                    layer.msg(data.msg, {icon: 1}, function () {
+                        window.location.reload();
+                    });
+                }
+                else {
+                    layer.msg(data.msg, {icon: 5, time: 1000});
+                }
+            })
+
+        });
+    }
+
+    /*用户-删除*/
+    function member_del(obj, id) {
+        layer.confirm('确认要删除吗？', function (index) {
+            //发异步删除数据
+            $.getJSON("{:url('comment/del')}?id=" + id, function (data) {
+                if (data.code == 1) {
+                    layer.msg(data.msg, {icon: 1}, function () {
+                        window.location.reload();
+                    });
+                }
+                else {
+                    layer.msg(data.msg, {icon: 5, time: 1000});
+                }
+            })
+        });
+    }
+
+    function slect(obj, id) {
+        layer.confirm('确认要修改状态吗？', function (index) {
+            //发异步删除数据
+            var use_id = obj.value;
+            var img_id = id;
+
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url:"{:url('admin/image/edit')}",
+                data:{use_id:use_id,img_id:img_id},
+                success: function (data) {
+                    if(data.code)
+                    {
+                        layer.msg(data.msg, {icon: 1, time: 1000});
+                    }
+                    else {
+                        layer.msg(data.msg, {icon: 5,time:2000}, function () {
+                            window.location.reload();
+                        });
+                    }
+                }
+            })
+        });
+    }
+</script>
+
+</body>
+
+</html>

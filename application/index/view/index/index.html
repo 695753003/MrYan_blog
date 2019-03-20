@@ -1,0 +1,25 @@
+{if condition="$res.code==1"}
+<div class="blogs" data-scroll-reveal="enter bottom over 1s" >
+    <h3 class="blogtitle" style="color:darkred; letter-spacing:5px;">{$res.message}</h3>
+</div>
+{/if}
+<div class="blogtab">
+    {volist name="list" id="itme"}
+    <div class="blogs" data-scroll-reveal="enter bottom over 1s" >
+        <h3 class="blogtitle"><a href="{:url('index/index/mainBody',['id'=>$itme.id])}" target="_blank">{$itme.title}</a></h3>
+        <span class="blogpic"><a href="{:url('index/index/mainBody',['id'=>$itme.id])}" target="_blank" title=""><img src="{$itme.thumbnail}" alt="" style="width: 300px;height: 100px" ></a></span>
+        <p class="blogtext">{$itme.description} </p>
+        <div class="bloginfo">
+            <ul>
+                <li class="author">{$itme.author}</li>
+                <li class="lmname">{$itme.b_title}</li>
+                <li class="timer">{$itme['addtime']|date="Y-m-d H:i:s",###}</li>
+                <li class="view"><span>{$itme.click}</span>已阅读</li>
+                <li class="like">{$itme.is_like}</li>
+            </ul>
+        </div>
+    </div>
+    {/volist}
+    {$list->render()}
+</div>
+

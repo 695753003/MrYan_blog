@@ -1,0 +1,341 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost
+Source Server Version : 50553
+Source Host           : localhost:3306
+Source Database       : yan_blog
+
+Target Server Type    : MYSQL
+Target Server Version : 50553
+File Encoding         : 65001
+
+Date: 2019-03-20 15:16:03
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for bg_about_me
+-- ----------------------------
+DROP TABLE IF EXISTS `bg_about_me`;
+CREATE TABLE `bg_about_me` (
+  `id` int(11) NOT NULL,
+  `intro` text COLLATE utf8_bin COMMENT '博主简介',
+  `basic_info` text COLLATE utf8_bin,
+  `job_skil` text COLLATE utf8_bin COMMENT '职业技能',
+  `my_blog` text COLLATE utf8_bin COMMENT '我的博客',
+  `thumb` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '缩略图',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of bg_about_me
+-- ----------------------------
+INSERT INTO `bg_about_me` VALUES ('1', 0x3C703E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223E4D7259616E2C20E794B7EFBC8CE4B880E4B8AA3930E5908EE79A84E88D89E6A0B9E7AB99E995BFEFBC8CE887AAE8AEA4E4B8BAE698AFE4B880E4B8AAE4B88DE5838FE7A88BE5BA8FE78CBFE79A84E7A88BE5BA8FE78CBF3C2F7370616E3E282A5E5F5E2A29E380823C7370616E207374796C653D22666F6E742D73697A653A20313870783B223EE69BBEE69C8DE5BDB9E4B88EE4B8ADE59BBDE4BABAE6B091E8A7A3E694BEE5869BE38090E7A9BAE5869BE38091EFBC8C32303136E5B9B4E98080E5BDB9EFBC8CE887AAE5ADA6E8BDACE8A18CE8BF9BE585A5E4BA92E88194E7BD91E8A18CE4B89AEFBC8C32303137E5B9B4E5BC80E5A78BE4BB8EE4BA8BE4BA8E4954E5B297E4BD8DE4B880E8BEB9E5B7A5E4BD9CE4B880E8BEB9E6BD9CE5BF83E992BBE7A094776562E68A80E69CAFEFBC8CE585A5E8A18CE697B6E997B4E8BE83E6999AEFBC8CE68E8CE68FA1E79A84E68A80E69CAFE4B99FE8BE83E6B585E38082E58699E6ADA4E58D9AE5AEA2EFBC8CE698AFE4B8BAE4BA86E58886E4BAABE4B880E4BA9BE5BF83E5BE97EFBC8CE5A682E69C89E7BCBAE999B7E8BF98E69C9BE59084E4BD8DE5A4A7E4BDACEFBC8CE68C87E782B9E4B880E4BA8C3C2F7370616E3E3C62722F3E3C2F703E, 0x3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7374726F6E673E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223EE5908DE7A7B03C2F7370616E3E3C2F7374726F6E673E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223EEFBC9A4D7259616E3C2F7370616E3E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7374726F6E673E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223EE8818CE4B89A3C2F7370616E3E3C2F7374726F6E673E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223EEFBC9A504850E8BDAFE4BBB6E5BC80E58F91E5B7A5E7A88BE5B8883C2F7370616E3E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7374726F6E673E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223EE982AEE7AEB13C2F7370616E3E3C2F7374726F6E673E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223EEFBC9A7971773138363731313137363937403136332E636F6D3C2F7370616E3E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7374726F6E673E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223EE585ACE4BC97E58FB7EFBC9A3C2F7370616E3E3C2F7374726F6E673E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C696D67207372633D22687474703A2F2F3132372E302E302E312F79616E2F7075626C69632F7374617469632F75706C6F61642F696D672F32303138313232342F313534353632383937302E706E6722207469746C653D22313534353632383937302E706E672220616C743D22696D6167652E706E67222F3E3C2F703E3C703E3C62722F3E3C2F703E, 0x3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223E31E38081E7869FE6828970687020E4BBA5E58F8A5468696E6B706870352C5969693220E7AD89E6A186E69EB63C62722F3E3C2F7370616E3E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223E32E38081E7869FE682896A7175657279202C6C6179756920EFBC8C68746D6CEFBC8C63737320E7AD89E5898DE7ABAFE68A80E69CAF3C2F7370616E3E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223E33E38081E7869FE682894D7953716C202C20526564697320E7AD89E695B0E68DAEE5BA93E68A80E69CAF3C2F7370616E3E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223E34E38081E7869FE68289474954EFBC8C2053564E20E7AD89E78988E69CACE68EA7E588B6E5B7A5E585B73C2F7370616E3E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223E35E38081E7869FE682894C494E555820E59FBAE7A180E6938DE4BD9C3C2F7370616E3E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223E36E38081E795A5E687824A415641EFBC8C20432B2B3C2F7370616E3E3C2F703E3C703E3C62722F3E3C2F703E, 0x3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223E3C7374726F6E673EE5898DE7ABAFE69E84E69EB63C2F7374726F6E673EEFBC9AE5898DE7ABAF2DE5898DE58FB0E7BD91E4B88AE689BEE79A84E7B4A0E69D90EFBC8CE5908EE58FB02DE5898DE7ABAFE98787E794A8582D61646D696E32E6A8A1E69DBF3C2F7370616E3E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223E3C7374726F6E673EE993BEE68EA5E59CB0E59D803C2F7374726F6E673EEFBC9A3C2F7370616E3E3C6120687265663D22687474703A2F2F782E78756562696E6773692E636F6D2F22207374796C653D22666F6E742D73697A653A20313870783B223E687474703A2F2F782E78756562696E6773692E636F6D2F3C2F613E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223E3C7374726F6E673EE5908EE7ABAFE69E84E69EB63C2F7374726F6E673EEFBC9A5450352B6D7973716C3C2F7370616E3E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223E3C7374726F6E673EE5A487E6A188E58FB73C2F7374726F6E673EEFBC9AE98482494350E5A4873138303133383134E58FB73C2F7370616E3E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223E3C7374726F6E673EE5A487E6B3A83C2F7374726F6E673EEFBC9AE69CACE58D9AE5AEA2E9A1B9E79BAEE4B8BAE5BC80E6BA90E4B88BE8BDBDE59CB0E59D803C2F7370616E3E3C6120687265663D22687474703A2F2F7777772E6769742E6364642F22207374796C653D22666F6E742D73697A653A20313870783B223E7777772E6769742E6364643C2F613E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C7370616E207374796C653D22666F6E742D73697A653A20313870783B223E3C7374726F6E673EE5BEAEE4BFA1E68993E8B58F3C2F7374726F6E673EEFBC9AE4BDA0E8AFB4E5A49AE5B091E5B0B1E5A49AE5B091EFBC813C2F7370616E3E3C696D67207372633D22687474703A2F2F696D672E62616964752E636F6D2F68692F6A78322F6A5F303035372E676966222F3E3C2F703E3C70207374796C653D2277686974652D73706163653A206E6F726D616C3B223E3C696D67207372633D22687474703A2F2F3132372E302E302E312F79616E2F7075626C69632F7374617469632F75706C6F61642F696D672F32303138313232342F313534353633313030332E706E6722207469746C653D22313534353633313030332E706E672220616C743D22696D6167652E706E67222F3E3C2F703E3C703E3C62722F3E3C2F703E, null);
+
+-- ----------------------------
+-- Table structure for bg_admin
+-- ----------------------------
+DROP TABLE IF EXISTS `bg_admin`;
+CREATE TABLE `bg_admin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '管理员ID',
+  `uname` varchar(255) COLLATE utf8_bin NOT NULL,
+  `password` varchar(255) COLLATE utf8_bin NOT NULL,
+  `status` tinyint(1) NOT NULL,
+  `nick_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '真实姓名',
+  `email` varchar(255) COLLATE utf8_bin NOT NULL,
+  `icon` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '用户头像',
+  `addtime` int(11) NOT NULL,
+  `group_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of bg_admin
+-- ----------------------------
+INSERT INTO `bg_admin` VALUES ('1', 'admin', '29d5140c5659545420e439f177bf7083', '1', 'Mr_Yan', '695753003@qq.com', '', '123456', '1');
+INSERT INTO `bg_admin` VALUES ('2', 'boos', '21232f297a57a5a743894a0e4a801fc3', '0', 'boos', '', '', '0', '4');
+INSERT INTO `bg_admin` VALUES ('3', 'kefu', '0444e11e0501438bda1af664f36974de', '0', 'hello', '', '', '0', '5');
+
+-- ----------------------------
+-- Table structure for bg_article
+-- ----------------------------
+DROP TABLE IF EXISTS `bg_article`;
+CREATE TABLE `bg_article` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '文章表主键',
+  `title` char(100) NOT NULL DEFAULT '' COMMENT '标题',
+  `thumbnail` varchar(255) NOT NULL COMMENT '缩略图',
+  `author` varchar(15) NOT NULL DEFAULT '' COMMENT '作者',
+  `content` mediumtext NOT NULL COMMENT '文章内容',
+  `keywords` varchar(255) NOT NULL DEFAULT '' COMMENT '关键字',
+  `description` char(255) NOT NULL DEFAULT '' COMMENT '描述',
+  `is_show` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '文章是否显示 1是 0否',
+  `is_delete` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否删除 1是 0否',
+  `is_top` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '是否置顶 1是 0否',
+  `is_original` tinyint(1) unsigned NOT NULL DEFAULT '1' COMMENT '是否原创',
+  `click` int(10) unsigned NOT NULL DEFAULT '20' COMMENT '浏览量',
+  `addtime` int(10) unsigned NOT NULL DEFAULT '0' COMMENT '添加时间',
+  `co_id` tinyint(2) unsigned NOT NULL DEFAULT '0' COMMENT '分类id',
+  `is_like` int(11) NOT NULL DEFAULT '0' COMMENT '点赞量',
+  `ca_id` varchar(30) DEFAULT NULL COMMENT '标签ID',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of bg_article
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for bg_auth_group
+-- ----------------------------
+DROP TABLE IF EXISTS `bg_auth_group`;
+CREATE TABLE `bg_auth_group` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `name` char(100) NOT NULL DEFAULT '',
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `rules` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of bg_auth_group
+-- ----------------------------
+INSERT INTO `bg_auth_group` VALUES ('1', '超级管理员', '1', '1,2,3,4,5,6,7,8,23,24,12,25,26,27,9,28,29,30,31,10,55,11,54,35,36,37,47,49,50,51,52,56,39,40,41,42');
+INSERT INTO `bg_auth_group` VALUES ('4', 'boos', '1', '1,2,3,4,5,6,7,8,23,24,12,25,26,27,9,28,29,30,31,10,11,35,36,37,47,49,50,39,40,41');
+INSERT INTO `bg_auth_group` VALUES ('5', '客服', '1', '1,2,7,12,9');
+
+-- ----------------------------
+-- Table structure for bg_auth_rule
+-- ----------------------------
+DROP TABLE IF EXISTS `bg_auth_rule`;
+CREATE TABLE `bg_auth_rule` (
+  `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
+  `pid` int(10) NOT NULL,
+  `ppid` int(10) NOT NULL,
+  `name` varchar(80) NOT NULL DEFAULT '',
+  `href` varchar(50) NOT NULL DEFAULT '',
+  `type` tinyint(1) NOT NULL DEFAULT '1',
+  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `condition` char(100) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of bg_auth_rule
+-- ----------------------------
+INSERT INTO `bg_auth_rule` VALUES ('1', '0', '0', '系统设置', 'admin/Shownav/config', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('2', '1', '0', '菜单管理', 'admin/Settings/menu', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('3', '1', '2', '添加顶级菜单', 'admin/Settings/Nav', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('4', '1', '2', '添加菜单', 'admin/Settings/addNav', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('5', '1', '2', '编辑菜单', 'admin/Settings/editNav', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('6', '1', '2', '删除菜单', 'admin/Settings/del', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('7', '1', '0', '权限管理', 'admin/Settings/ruleList', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('8', '1', '7', '添加权限', 'admin/Settings/addPageRule', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('10', '0', '0', '猿媛管理', '', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('11', '0', '0', '评论管理', '', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('12', '1', '0', '用户管理', 'admin/User/listUser', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('35', '0', '0', '文章管理', '', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('23', '1', '7', '编辑权限', 'admin/Settings/editPageRule', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('9', '1', '0', '用户组管理', 'admin/User/listUserGroup', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('24', '1', '7', '删除权限', 'admin/Settings/del', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('25', '1', '12', '新增用户', 'admin/User/addUser', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('26', '1', '12', '修改用户信息', 'admin/User/editUser', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('27', '1', '12', '删除用户', 'admin/User/del', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('28', '1', '9', '新增用户组', 'admin/User/addGroup', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('29', '1', '9', '编辑用户组名称', 'admin/User/groupEdit', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('30', '1', '9', '删除用户组', 'admin/User/groupDel', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('31', '1', '9', '权限分配', 'admin/User/assingPermissions', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('36', '35', '0', '文章列表', 'admin/Articles/articleList', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('37', '0', '0', '栏目管理', '', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('49', '0', '0', '站点管理', '', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('39', '0', '0', '类别管理', '', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('40', '39', '0', '类别列表', 'admin/Categorys/categoryList', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('41', '0', '0', '友链管理', '', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('42', '41', '0', '链接列表', 'admin/Friendship/friendshipList', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('47', '37', '0', '栏目列表', 'admin/Columns/columnList', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('50', '49', '0', '邮件管理', 'admin/Sitemanage/emailList', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('51', '49', '0', '图片管理', 'admin\\image\\imglist', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('52', '49', '0', '闲言碎语', 'admin/gossip/goslist', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('54', '11', '0', '评论列表', 'admin/comment/commentlist', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('55', '10', '0', '猿媛列表', 'admin/it_user/ituserlist', '1', '1', '');
+INSERT INTO `bg_auth_rule` VALUES ('56', '49', '0', '第三方登陆', 'admin/third_party_login/tplogin', '1', '1', '');
+
+-- ----------------------------
+-- Table structure for bg_category
+-- ----------------------------
+DROP TABLE IF EXISTS `bg_category`;
+CREATE TABLE `bg_category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '类别表',
+  `title` varchar(30) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of bg_category
+-- ----------------------------
+INSERT INTO `bg_category` VALUES ('2', 'php');
+INSERT INTO `bg_category` VALUES ('4', 'PHPMailer');
+INSERT INTO `bg_category` VALUES ('5', '关于我');
+INSERT INTO `bg_category` VALUES ('6', 'TP5');
+INSERT INTO `bg_category` VALUES ('7', 'linux');
+INSERT INTO `bg_category` VALUES ('8', 'debian');
+INSERT INTO `bg_category` VALUES ('9', 'nginx');
+INSERT INTO `bg_category` VALUES ('10', 'sentos');
+INSERT INTO `bg_category` VALUES ('11', '第三方登陆');
+INSERT INTO `bg_category` VALUES ('12', 'keeplalived');
+INSERT INTO `bg_category` VALUES ('13', 'ActiveMq');
+
+-- ----------------------------
+-- Table structure for bg_column
+-- ----------------------------
+DROP TABLE IF EXISTS `bg_column`;
+CREATE TABLE `bg_column` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL COMMENT '栏目名称',
+  `url` varchar(255) NOT NULL COMMENT '地址',
+  `antistop` varchar(255) DEFAULT NULL COMMENT '关键词',
+  `status` int(1) NOT NULL COMMENT '状态',
+  `order` int(10) NOT NULL COMMENT '排序',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of bg_column
+-- ----------------------------
+INSERT INTO `bg_column` VALUES ('3', 'linux', 'index/index', 'linux?', '1', '3');
+INSERT INTO `bg_column` VALUES ('4', 'php', 'index/index', 'php', '1', '1');
+INSERT INTO `bg_column` VALUES ('5', '关于我', 'index/about_me/myIndex', '我', '1', '99');
+INSERT INTO `bg_column` VALUES ('6', '闲言碎语', 'index/about_me/gossips', '闲言碎语', '1', '5');
+INSERT INTO `bg_column` VALUES ('7', '记录生活', 'index/index/index', '生活日记', '1', '88');
+INSERT INTO `bg_column` VALUES ('8', '前端', 'index/index', '前端', '1', '4');
+
+-- ----------------------------
+-- Table structure for bg_comment
+-- ----------------------------
+DROP TABLE IF EXISTS `bg_comment`;
+CREATE TABLE `bg_comment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '评论内容',
+  `uid` int(11) NOT NULL COMMENT '评论人',
+  `reply_name` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `pid` int(11) DEFAULT NULL COMMENT '回复评论id',
+  `aid` int(11) NOT NULL COMMENT '文章id',
+  `addtime` int(11) NOT NULL COMMENT '评论时间',
+  `status` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of bg_comment
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for bg_gossip
+-- ----------------------------
+DROP TABLE IF EXISTS `bg_gossip`;
+CREATE TABLE `bg_gossip` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `content` text COLLATE utf8_bin NOT NULL,
+  `create_time` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of bg_gossip
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for bg_image
+-- ----------------------------
+DROP TABLE IF EXISTS `bg_image`;
+CREATE TABLE `bg_image` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `hash` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `src` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '路径',
+  `status` int(255) NOT NULL DEFAULT '1' COMMENT '//状态 启用',
+  `use_id` int(10) DEFAULT NULL COMMENT '用处 ID',
+  `create_time` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of bg_image
+-- ----------------------------
+INSERT INTO `bg_image` VALUES ('1', '4c63558917a6334231330e9a863fb6bf0fa0acb3', '__STATIC__/about_img/20181228/539ed4126f459674e142911306835739.jpg', '1', '2', '1545980800');
+
+-- ----------------------------
+-- Table structure for bg_like
+-- ----------------------------
+DROP TABLE IF EXISTS `bg_like`;
+CREATE TABLE `bg_like` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `ip` varchar(20) COLLATE utf8_bin NOT NULL COMMENT '记录点赞IP',
+  `aid` int(10) NOT NULL COMMENT '文章id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of bg_like
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for bg_link
+-- ----------------------------
+DROP TABLE IF EXISTS `bg_link`;
+CREATE TABLE `bg_link` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `orders` int(10) NOT NULL COMMENT '排序',
+  `link_name` varchar(255) COLLATE utf8_bin NOT NULL COMMENT 'l链接名',
+  `url` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '网址',
+  `addtime` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of bg_link
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for bg_use
+-- ----------------------------
+DROP TABLE IF EXISTS `bg_use`;
+CREATE TABLE `bg_use` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '图片用处名称',
+  `num` int(11) NOT NULL COMMENT '限制N张',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of bg_use
+-- ----------------------------
+INSERT INTO `bg_use` VALUES ('1', '博客简介', '8');
+INSERT INTO `bg_use` VALUES ('2', '头像', '1');
+
+-- ----------------------------
+-- Table structure for bg_user
+-- ----------------------------
+DROP TABLE IF EXISTS `bg_user`;
+CREATE TABLE `bg_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nick_name` varchar(255) COLLATE utf8_bin NOT NULL,
+  `sex` char(5) COLLATE utf8_bin NOT NULL COMMENT '性别',
+  `year` int(11) NOT NULL COMMENT '出生日',
+  `email` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `appid` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '第三方ID',
+  `type` tinyint(1) NOT NULL COMMENT '登陆类型，1：QQ  2: 新浪',
+  `frist_time` int(11) NOT NULL COMMENT '第一次登陆时间',
+  `last_time` int(11) NOT NULL COMMENT '最后登录时间',
+  `head_img` varchar(255) COLLATE utf8_bin NOT NULL COMMENT '头像',
+  `status` int(11) NOT NULL COMMENT '状态：1 启用，0禁用',
+  `city` char(20) COLLATE utf8_bin NOT NULL COMMENT '地区',
+  `last_ip` varchar(50) COLLATE utf8_bin NOT NULL,
+  `login_num` int(11) DEFAULT '1' COMMENT '登陆次数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Records of bg_user
+-- ----------------------------

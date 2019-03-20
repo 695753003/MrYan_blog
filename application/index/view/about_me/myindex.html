@@ -1,0 +1,228 @@
+{__NOLAYOUT__}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>MrYan个人博客</title>
+    <meta name="keywords" content="个人博客,WEB学习,WEB学习博客,XXX个人博客" />
+    <meta name="description" content="个人博客,WEB学习,WEB学习博客,XXX个人博客" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.3.4/css/bootstrap.css">
+    <link href="__STATIC__/blog/css/base.css" rel="stylesheet">
+    <link href="__STATIC__/blog/css/about.css" rel="stylesheet">
+    <link href="__STATIC__/blog/css/index.css" rel="stylesheet">
+    <link href="__STATIC__/blog/css/m.css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="__STATIC__/mryan.ico">
+    <script src="__STATIC__/blog/js/jquery.min.js" ></script>
+    <script src="__STATIC__/blog/js/ab.js"></script>
+    <link href="__STATIC__/blog/css/viewer.css" rel="stylesheet">
+    <script src="__STATIC__/blog/js/viewer.js"></script>
+    <!--[if lt IE 9]>
+    <script src="js/modernizr.js"></script>
+    <![endif]-->
+</head>
+<body>
+<header class="header-navigation" id="header">
+    <nav >
+        <div class="logo" ><a style="color: black;" href="{:url('index/index')}">MrYan个人博客</a></div>
+        <h2 id="mnavh"><span class="navicon"></span></h2>
+        <ul id="starlist" style="color: black;font-size: 30px; ">
+            <li><a href="{:url('index/index')}" style="color: black;">首页</a></li>
+            {volist name="column" id="col"}
+            <li><a style="color: black;" href="{:url($col.url,['co_id'=>$col.id])}">{$col.title}</a></li>
+            {/volist}
+        </ul>
+
+        <div>
+            {empty name="userarr" }
+            <a class="a globalLoginBtn "  style="color: black;font-size: 15px;cursor: pointer;">登录</a>
+            {else /}
+            <div>
+                <img src="{$userarr.head_img}" style="width: 40px;height: 40px;  display: inline">
+                <span style="margin-top: -50px;">{$userarr.nick_name}</span>
+                <a  href="{:url('index/login/loginout')}" style="color:#0044BB ;font-size: 15px;cursor: pointer; ">退出</a>
+            </div>
+
+            {/empty}
+
+        </div>
+        <!--  <div class="searchbox">
+          <div id="search_bar" class="search_bar">
+              <form id="searchform" action="{:url('index/searchComment')}" method="post" name="searchform">
+                  <input class="input" style="border: 2px aqua solid" placeholder="想搜点什么呢.." type="text"  name="keyboard" id="keyboard">
+                  <input type="hidden" name="show" value="title"/>
+                  <input type="hidden" name="tempid" value="1"/>
+                  <input type="hidden" name="tbname" value="news">
+                  &lt;!&ndash;  <input value="搜索"/>&ndash;&gt;
+                  <botton type="submit" name="Submit" > <p class="search_ico"><span></span></p></botton>
+              </form>
+          </div>
+      </div>-->
+    </nav>
+
+
+
+</header>
+
+<article>
+    <div class="photowall" style=""  id="img">
+        <ul class="wall_a "  style=" width: 100%">
+            <li>
+                <img  style="" src="__STATIC__/blog/images/yan/1.jpg">
+            </li>
+            <li>
+                <img src="__STATIC__/blog/images/yan/2.jpg">
+            </li>
+            <li>
+                <img src="__STATIC__/blog/images/yan/3.jpg">
+            </li>
+            <li>
+                <img src="__STATIC__/blog/images/yan/4.jpg">
+            </li>
+            <li>
+                <img src="__STATIC__/blog/images/yan/5.jpg">
+            </li>
+            <li>
+                <img src="__STATIC__/blog/images/yan/9.jpg">
+            </li>
+            <li>
+                <img src="__STATIC__/blog/images/yan/7.jpg">
+            </li>
+            <li>
+                <img src="__STATIC__/blog/images/yan/8.jpg">
+            </li>
+
+        </ul>
+    </div>
+    <div class="abox">
+        <h2>博主简介</h2>
+        <div class="biji-content" id="content"> {$data.intro} </div>
+
+        <div class="navlist">
+            <ul>
+                <li class="navcurrent"><a href="#top1">基本信息</a> </li>
+                <li> <a href="#top2" >工作技能</a> </li>
+                <li> <a href="#top4" >我的博客</a> </li>
+            </ul>
+        </div>
+        <div class="navtab">
+            <div class="navitem" style="display: block;" name = "top1">
+                <div class="content">
+                    {$data.basic_info}
+                </div>
+            </div>
+            <div class="navitem" name = "top2">
+                <div class="content">
+                    <p class="ab_t">工作技能：</p>
+                    {$data.job_skil}
+                </div>
+            </div>
+            <div class="navitem" name = "top4">
+                <div class="content">
+                    <p class="ab_t">我的博客：</p>
+                    {$data.my_blog}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</article>
+<footer>
+    <p>copyright © by <a href="http://www.mryan888.com" target="_blank">MrYan个人博客</a> <span >鄂ICP备18013814号-2</span>
+    </p>
+</footer>
+<a href="#" class="cd-top">Top</a>
+<!--登陆隐藏域-->
+<div class="modal fade" id="loginModal" style="display:none;">
+    <div class="modal-dialog modal-sm" style="width:540px;">
+        <div class="modal-content" style="border:none;">
+            <div class="col-left"></div>
+            <div class="col-right">
+                <div class="modal-header">
+                    <button type="button" id="login_close" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="loginModalLabel" style="font-size: 18px; margin-left: 30px;">无需注册，可使用以下方式直接登陆</h4>
+                </div>
+                <div class="modal-body">
+                    <div style="display: flex;justify-content: center;">
+                        <a onclick="toQzoneLogin()"> <img src="__STATIC__/login/images/Connect_logo_5.png"></a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<!--登录弹出样式-->
+<script type="text/javascript" src="__STATIC__/login/js/jquery2.2.2.min.js"></script>
+<script type="text/javascript" src="__STATIC__/login/js/modal.js"></script>
+<script type="text/javascript" src="__STATIC__/login/js/script.js"></script>
+<!--登录弹出样式-->
+
+
+
+<script>
+    //图片放大
+    var viewer = new Viewer(document.getElementById('img'), {
+        url: 'data-original'
+    });
+
+//qq登陆
+    var childWindow;
+    function toQzoneLogin()
+    {
+        childWindow = window.open("{:url('login/qqlogin')}","TencentLogin");
+        location.reload();
+    }
+    function closeChildWindow()
+    {
+        childWindow.close();
+    }
+
+</script>
+
+<script>
+
+    (function(){
+
+        var bp = document.createElement('script');
+
+        bp.src = '//push.zhanzhang.baidu.com/push.js';
+
+        var s = document.getElementsByTagName("script")[0];
+
+        s.parentNode.insertBefore(bp, s);
+
+    })();
+
+</script>
+
+<script>
+    (function(){
+        var canonicalURL, curProtocol;
+        //Get the <link> tag
+        var x=document.getElementsByTagName("link");
+        //Find the last canonical URL
+        if(x.length > 0){
+            for (i=0;i<x.length;i++){
+                if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+                    canonicalURL=x[i].href;
+                }
+            }
+        }
+        //Get protocol
+        if (!canonicalURL){
+            curProtocol = window.location.protocol.split(':')[0];
+        }
+        else{
+            curProtocol = canonicalURL.split(':')[0];
+        }
+        //Get current URL if the canonical URL does not exist
+        if (!canonicalURL) canonicalURL = window.location.href;
+        //Assign script content. Replace current URL with the canonical URL
+        !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+
+</script>
+
+</html>

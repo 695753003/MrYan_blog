@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport"
+          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/datatables/hui/H-ui.min.css"/>
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/font.css">
+    <link rel="stylesheet" href="__STATIC__/xadmin/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__STATIC__/xadmin/js/xadmin.js"></script>
+
+    <style>
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .pagination li {
+            margin: 0px 10px;
+            border: 1px solid #e6e6e6;
+            padding: 3px 8px;
+            display: inline-block;
+        }
+
+        .pagination .active {
+            background-color: #46A3FF;
+            color: #fff;
+        }
+
+        .pagination .disabled {
+            color: #aaa;
+        }
+    </style>
+
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <![endif]-->
+</head>
+
+<body>
+<div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">首页</a>
+        <a href="">站点管理</a>
+        <a>
+          <cite>闲言碎语</cite></a>
+      </span>
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
+       href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+</div>
+<div class="x-body">
+    <xblock>
+        <button class="layui-btn layui-btn-danger" onclick="x_admin_show('添加碎语','{:url('admin/gossip/addOrEditGossip')}',500,400)"><i
+                class="layui-icon"></i>添加碎语
+        </button>
+    </xblock>
+    <table class="layui-table" id="datatable">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>内容</th>
+            <th>发布时间</th>
+            <th>操作</th>
+        </tr>
+        {volist name="listGos" id="gos"}
+        <tr>
+            <th>{$gos.id}</th>
+            <th>{$gos.content}</th>
+            <th>{$gos.create_time | date="Y-m-d H:i:s",###}</th>
+            <th>
+                <a title="编辑"  onclick="x_admin_show('添加碎语','{:url('admin/gossip/addOrEditGossip',['id'=>$gos.id])}',500,400)" href="javascript:;"><i class="layui-icon">&#xe642;</i></a>
+                <a title="删除" onclick="member_del(this,{$gos.id})" href="javascript:;"><i
+                    class="layui-icon">&#xe640;</i></a></th>
+        </tr>
+        {/volist}
+        </thead>
+    </table>
+
+</div>
+<div>{$listGos->render()}</div>
+
+
+
+<script>
+    layui.use('laydate', function () {
+
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#end' //指定元素
+        });
+
+    });
+
+    /*用户-删除*/
+    function member_del(obj, id) {
+        layer.confirm('确认要删除吗？', function (index) {
+            //发异步删除数据
+            $.getJSON("{:url('gossip/del')}?id=" + id, function (data) {
+                if (data.code == 1) {
+                    layer.msg(data.msg, {icon: 1,time:1000}, function () {
+                        window.location.reload();
+                    });
+                }
+                else {
+                    layer.msg(data.msg, {icon: 5, time: 1000});
+                }
+            })
+        });
+    }
+
+</script>
+
+</body>
+
+</html>
