@@ -54,9 +54,8 @@ CREATE TABLE `bg_admin` (
 -- ----------------------------
 -- Records of bg_admin
 -- ----------------------------
-INSERT INTO `bg_admin` VALUES ('1', 'admin', '29d5140c5659545420e439f177bf7083', '1', 'Mr_Yan', '695753003@qq.com', '', '123456', '1');
-INSERT INTO `bg_admin` VALUES ('2', 'boos', '21232f297a57a5a743894a0e4a801fc3', '0', 'boos', '', '', '0', '4');
-INSERT INTO `bg_admin` VALUES ('3', 'kefu', '0444e11e0501438bda1af664f36974de', '0', 'hello', '', '', '0', '5');
+INSERT INTO `bg_admin` VALUES ('1', 'admin', '21232f297a57a5a743894a0e4a801fc3', '1', 'Mr_Yan', '695753003@qq.com', '', '123456', '1');
+
 
 -- ----------------------------
 -- Table structure for bg_article
