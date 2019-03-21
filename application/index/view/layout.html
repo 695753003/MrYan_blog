@@ -152,7 +152,7 @@
         <h2>置顶推荐</h2>
         <ul>
             {volist name="link_article" id="article"}
-            <li><span class="lei"></span><a href="{:url('index/index/mainBody',['id'=>$article.id])}" style="color: navy; font-size: 15px;">{$article.title}</a></li>
+            <li class='uts' ><span class="lei"></span><a href="{:url('index/index/mainBody',['id'=>$article.id])}" style="color: navy; font-size: 15px;">{$article.title}</a></li>
             {/volist}
         </ul>
     </div>

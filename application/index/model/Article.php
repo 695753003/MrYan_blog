@@ -22,7 +22,7 @@ class Article extends Model
                 ->join("bg_column b", "a.co_id=b.id", "left")
                 ->where($where)
                 ->where(['a.is_show'=>1])
-                ->order("addtime desc")->paginate(10);
+                ->order("addtime desc")->paginate(6);
           return $list;
         }
     }

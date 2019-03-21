@@ -5,4 +5,4 @@ return [
 'port'=>"465", //端口号
 'send_user'=>"xxxxxx@qq.com", //邮箱账号
 'smtp_pwd'=>"xxxxxxx", //SMTP授权密码
-];
+];                               
