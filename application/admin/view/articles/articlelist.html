@@ -40,7 +40,7 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>文章标题</th>
+            <th width="200">文章标题</th>
             <th>所属栏目</th>
             <th>作者</th>
             <th>标签</th>
@@ -48,6 +48,7 @@
             <th>置顶</th>
             <th>原创</th>
             <th>点击数</th>
+            <th>点赞数</th>
             <th>发布时间</th>
             <th>操作</th>
         </thead>
@@ -84,6 +85,7 @@
                 {"data": "is_top","render":function(data,type,row,meta){return row.is_top ? "✔":"X";}},
                 {"data": "is_original","render":function(data,type,row,meta){return row.is_original ? "✔":"X";}},
                 {"data": "click"},
+                {"data": "is_like"},
                 {"data": "addtime","render":function(data,type,row,meta) {
                         var date = new Date(row.addtime*1000);
                         Y = date.getFullYear() + '-';
@@ -99,7 +101,7 @@
             ],
             "columnDefs": [
                 {
-                    "targets": [10],
+                    "targets": [11],
                     "data": "id",
                     "render": function(data, type, row,meta) {
 

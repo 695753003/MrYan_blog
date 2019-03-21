@@ -68,7 +68,8 @@
             <label class="layui-form-label"><span class="x-red">*</span>标签</label>
             <div class="layui-input-block">
                 {volist name="category" id="arr"}
-                <input type="checkbox" name="category" lay-skin="primary"  value="{$arr.id}" title="{$arr.title}" >
+
+                <input type="checkbox" name="category" lay-skin="primary"  value="{$arr.id}" title="{$arr.title}"    {present name="data"} {in name="$arr['id']" value="$data['ca_id']"}  checked="checked" {/in}{/present} >
                 {/volist}
             </div>
         </div>

@@ -80,13 +80,14 @@ class Articles extends Praent{
                $data['is_original']=$_POST['is_original'];   //是否原创
                $data['co_id']=$_POST['column_id'];          //所属栏目
                $data['ca_id']= substr($_POST['category'],0,strlen($_POST['category'])-1) ; //标签         //所属标签
-               $data['addtime']=time();        //创建时间
+
                 if(empty($_POST['id']))
                 {
                     if(!empty($yestitle))
                     {
                         return ['code'=>0,"msg"=>"此标题已存在"];
                     }
+                    $data['addtime']=time();        //创建时间
                     //添加
                     if(Db::table("bg_article")->insert($data))
                     {
@@ -121,7 +122,6 @@ class Articles extends Praent{
           $this->assign("column",$column);
           $this->assign("category",$category);
           return $this->fetch();
-
      }
 
     public function del()
